@@ -22,3 +22,11 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+#Frontendmentor 
+*.sketch
+*.xd
+*.fig
+.DS_Store
+README.info.md 
+style-guide.md
