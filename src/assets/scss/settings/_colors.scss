@@ -1,3 +1,9 @@
 // Colors
 $_very-dark-gray: hsl(0, 0%, 17%);
 $_dark-gray: hsl(0, 0%, 59%);
+
+// Color Theme
+$theme-colors: (
+    'text-color': $_very-dark-gray,
+    'text-ligher-color': $_dark-gray,
+);
