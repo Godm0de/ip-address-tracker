@@ -1,0 +1,10 @@
+#Ignore modules
+node_modules
+
+#Ignore config files
+*.config.js
+package.json
+package-lock.json
+
+#Ingnore public html
+public
