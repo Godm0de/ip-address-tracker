@@ -19,10 +19,15 @@
     </div>
 </template>
 
-<script></script>
+<script>
+module.exports = {
+    name: 'card',
+};
+</script>
 
 <style lang="scss" scoped>
 .card {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,6 +38,8 @@
     margin-top: var(--sp-3);
     border-radius: 0.83rem;
     padding: 1.44rem 1.33rem 1.33rem 1.33rem;
+
+    z-index: 1;
 
     &__title {
         margin: 0;

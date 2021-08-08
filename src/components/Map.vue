@@ -1,16 +1,15 @@
 <template>
-    <p class="map"></p>
+    <GmapMap :center="{ lat: 10, lng: 10 }" :zoom="7" map-type-id="terrain" class="map"> </GmapMap>
 </template>
 
 <script>
 module.exports = {
-    name: 'map',
+    name: 'Map',
 };
 </script>
 
 <style lang="scss" scoped>
 .map {
-    background: red;
-    height: calc(100% - 20.83rem);
+    height: calc(100vh - 20.83rem);
 }
 </style>

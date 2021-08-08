@@ -6,7 +6,7 @@
             <card></card>
         </header>
         <main>
-            <map></map>
+            <Map></Map>
         </main>
     </div>
 </template>
@@ -14,12 +14,14 @@
 <script>
 import SearchField from './components/SearchField.vue';
 import Card from './components/Card.vue';
+import Map from './components/Map.vue';
 
 export default {
     name: 'App',
     components: {
         SearchField,
         Card,
+        Map,
     },
 };
 </script>
