@@ -25,3 +25,14 @@ $fs-mobile-heading: $_fs-26;
 $fs-mobile-input: $_fs-18;
 $fs-mobile-card-title: $_fs-10;
 $fs-mobile-card-text: $_fs-20;
+
+$font-theme: (
+    'fs-heading': $fs-heading,
+    'fs-input': $fs-input,
+    'fs-card-title': $fs-card-title,
+    'fs-card-text': $fs-card-text,
+    'fs-mobile-heading': $fs-mobile-heading,
+    'fs-mobile-input': $fs-mobile-input,
+    'fs-mobile-card-title': $fs-mobile-card-title,
+    'fs-mobile-card-text': $fs-mobile-card-text,
+);
