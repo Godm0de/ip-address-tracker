@@ -29,6 +29,7 @@ module.exports = {
     max-width: 30.83rem;
 
     &__input {
+        width: 100%;
         flex-grow: 1;
         padding: 1em 1.33em 1.06rem 1.33em;
         border: 0;
