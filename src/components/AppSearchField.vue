@@ -1,6 +1,6 @@
 <template>
     <div class="field container">
-        <input type="text" class="field__input" v-model="inputTex" />
+        <input type="text" class="field__input" v-model="inputTex" placeholder="Search for any IP address or domain" />
         <button @click="submitInput" class="field__submit">
             <img src="@/assets/images/icon-arrow.svg" alt="" />
         </button>
