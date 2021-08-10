@@ -7,5 +7,9 @@
 <style lang="scss" scoped>
 .map {
     height: calc(100vh - 300px);
+
+    @media screen and (min-width: 1200px) {
+        height: calc(100vh - 280px);
+    }
 }
 </style>

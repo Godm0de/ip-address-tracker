@@ -44,5 +44,14 @@ export default {
         font-weight: 500;
         color: var(--light-text-color);
     }
+
+    @media screen and (min-width: 1200px) {
+        max-height: 280px;
+
+        &__title {
+            padding: 33px 0 31px 0;
+            font-size: 32px;
+        }
+    }
 }
 </style>

@@ -26,7 +26,7 @@ module.exports = {
 <style lang="scss" scoped>
 .field {
     display: flex;
-    max-width: 30.83rem;
+    max-width: 555px;
 
     &__input {
         width: 100%;

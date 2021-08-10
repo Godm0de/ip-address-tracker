@@ -55,11 +55,39 @@ module.exports = {
 
     &__text {
         margin: 0.39rem 0 0 0;
-        font-weight: 700;
+        font-weight: 500;
         font-size: 20px;
     }
 
-    @media screen and (min-width: 769px) {
+    &__divider {
+        display: none;
+
+        width: 1px;
+        height: 100%;
+        color: var(--grey-text-color);
+    }
+
+    @media screen and (min-width: 1200px) {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 32px;
+        text-align: start;
+        margin: 48px auto 0 auto;
+        padding: 36px 32px 37px 32px;
+
+        &__title {
+            font-size: 12px;
+        }
+
+        &__text {
+            font-size: 26px;
+            width: 10ch;
+        }
+
+        &__section:not(:first-child) {
+            border-left: 1px solid #979797;
+            padding-left: 32px;
+        }
     }
 }
 
