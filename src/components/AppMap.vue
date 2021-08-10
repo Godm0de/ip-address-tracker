@@ -1,5 +1,7 @@
 <template>
-    <GmapMap :center="center" :zoom="7" map-type-id="terrain" class="map"></GmapMap>
+    <GmapMap :center="center" :zoom="19" map-type-id="terrain" class="map">
+        <GmapMarker :position="center" :clickable="false" :draggable="false" />
+    </GmapMap>
 </template>
 
 <script>

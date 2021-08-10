@@ -41,9 +41,10 @@ module.exports = {
     border-radius: 0.83rem;
     padding: 1.44rem 1.33rem 1.33rem 1.33rem;
 
-    z-index: 1;
+    z-index: 5;
     max-width: 61.67rem;
 
+    box-shadow: 0px 50px 50px -25px rgba(0, 0, 0, 0.0983665);
     &__title {
         margin: 0;
 
@@ -86,7 +87,7 @@ module.exports = {
         }
 
         &__section:not(:first-child) {
-            border-left: 1px solid #979797;
+            border-left: 1px solid #dbdbdb;
             padding-left: 32px;
         }
     }

@@ -30,8 +30,8 @@ export default {
             timezone: '',
             isp: '',
             error: '',
-            lat: '',
-            lng: '',
+            lat: 0,
+            lng: 0,
         };
     },
     mounted() {
@@ -39,17 +39,32 @@ export default {
     },
     methods: {
         searchIpAddress(ip) {
-            fetch(`https://geo.ipify.org/api/v1?apiKey=${process.env.VUE_APP_GEO_IPIFY_KEY}&ipAddress=${ip}`)
+            const ipProp = ip || '';
+            fetch(`https://geo.ipify.org/api/v1?apiKey=${process.env.VUE_APP_GEO_IPIFY_KEY}&ipAddress=${ipProp}`)
                 .then((response) => response.json())
                 .then((info) => {
                     this.ip = info.ip;
-                    this.location = `${info.location.city}, ${info.location.region} ${info.location.postalCode}`;
+                    this.location = `${info.location.city}, ${this.createAcronym(info.location.region)} ${info.location.postalCode}`;
                     this.timezone = `UTC ${info.location.timezone}`;
                     this.isp = info.isp;
                     this.lat = info.location.lat;
                     this.lng = info.location.lng;
                 })
                 .catch((error) => console.log(error));
+        },
+        createAcronym(phrase) {
+            const words = phrase.split(/\s|-/);
+            return words.length > 1
+                ? words
+                      .map((value) => value.charAt(0))
+                      .join('')
+                      .toUpperCase()
+                : words[0]
+                      .split('')
+                      .filter((char) => !['a', 'e', 'i', 'o', 'u'].includes(char))
+                      .splice(0, 2)
+                      .join('')
+                      .toUpperCase();
         },
     },
 };
