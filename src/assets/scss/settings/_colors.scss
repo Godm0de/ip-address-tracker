@@ -1,0 +1,16 @@
+// Colors
+$_very-dark-gray: hsl(0, 0%, 17%);
+$_dark-gray: hsl(0, 0%, 59%);
+$_white: hsl(100, 100%, 100%);
+$_black: hsl(0, 0%, 0%);
+$_ligher-black: hsl(0, 0, 25%);
+
+// Color Theme
+$theme-colors: (
+    'dark-text-color': $_very-dark-gray,
+    'grey-text-color': $_dark-gray,
+    'light-text-color': $_white,
+    'bg-button-color': $_black,
+    'hover-button-color': $_ligher-black,
+    'bg-card-color': $_white,
+);

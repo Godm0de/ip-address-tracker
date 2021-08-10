@@ -1,0 +1,7 @@
+@use "../settings/colors";
+@use "../settings/typography";
+
+body {
+    color: map-get(colors.$theme-colors, 'text-color');
+    font-family: typography.$font-family;
+}

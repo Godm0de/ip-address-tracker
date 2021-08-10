@@ -1,0 +1,12 @@
+@use "../settings/typography";
+@use "../settings/colors";
+@use "../settings/layout";
+@use "../tools/mixins";
+
+:root {
+    font-size: typography.$font-size;
+
+    @include mixins.css-variables(colors.$theme-colors);
+    @include mixins.css-variables(typography.$font-theme);
+    @include mixins.css-variables(layout.$spaces-theme);
+}
