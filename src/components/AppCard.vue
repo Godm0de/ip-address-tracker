@@ -3,19 +3,19 @@
         <div class="card">
             <div class="card__section">
                 <h5 class="card__title">IP ADDRESS</h5>
-                <p class="card__text">192.212.174.101</p>
+                <p class="card__text">{{ ip }}</p>
             </div>
             <div class="card__section">
                 <h5 class="card__title">LOCATION</h5>
-                <p class="card__text">Brooklyn, NY 10001</p>
+                <p class="card__text">{{ location }}</p>
             </div>
             <div class="card__section">
                 <h5 class="card__title">TIMEZONE</h5>
-                <p class="card__text">UTC -05:00</p>
+                <p class="card__text">{{ timezone }}</p>
             </div>
             <div class="card__section">
                 <h5 class="card__title">ISP</h5>
-                <p class="card__text">SpaceX Starlink</p>
+                <p class="card__text">{{ isp }}</p>
             </div>
         </div>
     </div>
@@ -23,7 +23,8 @@
 
 <script>
 module.exports = {
-    name: 'card',
+    name: 'app-card',
+    props: ['ip', 'location', 'timezone', 'isp'],
 };
 </script>
 

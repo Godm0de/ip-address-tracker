@@ -1,8 +1,24 @@
 <template>
-    <GmapMap :center="{ lat: 10, lng: 10 }" :zoom="7" map-type-id="terrain" class="map"></GmapMap>
+    <GmapMap :center="center" :zoom="7" map-type-id="terrain" class="map"></GmapMap>
 </template>
 
-<script></script>
+<script>
+module.exports = {
+    name: 'app-map',
+    props: {
+        center: {
+            lat: {
+                type: Number,
+                default: 10,
+            },
+            lng: {
+                type: Number,
+                default: 10,
+            },
+        },
+    },
+};
+</script>
 
 <style lang="scss" scoped>
 .map {

@@ -9,7 +9,7 @@
 
 <script>
 module.exports = {
-    name: 'search-field',
+    name: 'app-search-field',
     data() {
         return {
             inputTex: '',

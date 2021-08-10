@@ -2,11 +2,11 @@
     <div id="app">
         <header class="header">
             <h1 class="header__title">IP Address Tracker</h1>
-            <app-search-field></app-search-field>
-            <app-card></app-card>
+            <app-search-field @search="searchIpAddress"></app-search-field>
+            <app-card :ip="ip" :location="location" :timezone="timezone" :isp="isp"></app-card>
         </header>
         <main>
-            <app-map></app-map>
+            <app-map :center="{ lat: lat, lng: lng }"></app-map>
         </main>
     </div>
 </template>
@@ -22,6 +22,35 @@ export default {
         AppCard,
         AppMap,
         AppSearchField,
+    },
+    data() {
+        return {
+            ip: '',
+            location: '',
+            timezone: '',
+            isp: '',
+            error: '',
+            lat: '',
+            lng: '',
+        };
+    },
+    mounted() {
+        this.searchIpAddress('');
+    },
+    methods: {
+        searchIpAddress(ip) {
+            fetch(`https://geo.ipify.org/api/v1?apiKey=${process.env.VUE_APP_GEO_IPIFY_KEY}&ipAddress=${ip}`)
+                .then((response) => response.json())
+                .then((info) => {
+                    this.ip = info.ip;
+                    this.location = `${info.location.city}, ${info.location.region} ${info.location.postalCode}`;
+                    this.timezone = `UTC ${info.location.timezone}`;
+                    this.isp = info.isp;
+                    this.lat = info.location.lat;
+                    this.lng = info.location.lng;
+                })
+                .catch((error) => console.log(error));
+        },
     },
 };
 </script>
