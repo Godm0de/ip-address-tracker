@@ -7,14 +7,17 @@
         </header>
         <main>
             <app-map :center="{ lat: lat, lng: lng }"></app-map>
+            <app-alert v-if="error" @close="resetError">The IP v4 or v6 is invalid! Please check the (RFC791)</app-alert>
         </main>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
 import AppSearchField from './components/AppSearchField.vue';
 import AppMap from './components/AppMap.vue';
 import AppCard from './components/AppCard.vue';
+import AppAlert from './components/AppAlert.vue';
 
 export default {
     name: 'App',
@@ -22,6 +25,7 @@ export default {
         AppCard,
         AppMap,
         AppSearchField,
+        AppAlert,
     },
     data() {
         return {
@@ -29,38 +33,35 @@ export default {
             location: '',
             timezone: '',
             isp: '',
-            error: '',
+            error: false,
             lat: 0,
             lng: 0,
             disabled: false,
         };
     },
     mounted() {
-        this.searchIpAddress('8.8.8.8');
+        this.searchIpAddress('');
     },
     methods: {
         searchIpAddress(ip) {
             this.disabled = true;
             const ipProp = ip || '';
-            fetch(`https://geo.ipify.org/api/v1?apiKey=${process.env.VUE_APP_GEO_IPIFY_KEY}&ipAddress=${ipProp}`).then((response) => {
-                if (response.status === 200) {
-                    response.json().then((info) => {
-                        if (info) {
-                            this.ip = info.ip;
-                            this.location = `${info.location.city}, ${this.createAcronym(info.location.region)} ${
-                                info.location.postalCode
-                            }`;
-                            this.timezone = `UTC ${info.location.timezone}`;
-                            this.isp = info.isp;
-                            this.lat = info.location.lat;
-                            this.lng = info.location.lng;
-                            this.disabled = false;
-                        }
-                    });
-                } else {
-                    console.log('Ip v4 or v6 invalid');
-                }
-            });
+            axios
+                .get(`https://geo.ipify.org/api/v1?apiKey=${process.env.VUE_APP_GEO_IPIFY_KEY}&ipAddress=${ipProp}`)
+                .then((response) => {
+                    const info = response.data;
+                    this.ip = info.ip;
+                    this.location = `${info.location.city}, ${this.createAcronym(info.location.region)} ${info.location.postalCode}`;
+                    this.timezone = `UTC ${info.location.timezone}`;
+                    this.isp = info.isp;
+                    this.lat = info.location.lat;
+                    this.lng = info.location.lng;
+                    this.disabled = false;
+                })
+                .catch(() => {
+                    this.disabled = false;
+                    this.error = true;
+                });
         },
         createAcronym(phrase) {
             const words = phrase.split(/\s|-/);
@@ -75,6 +76,9 @@ export default {
                       .splice(0, 2)
                       .join('')
                       .toUpperCase();
+        },
+        resetError() {
+            this.error = false;
         },
     },
 };

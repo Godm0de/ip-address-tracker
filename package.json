@@ -9,6 +9,7 @@
     "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue2-google-maps": "^0.10.7"
@@ -53,10 +54,10 @@
         }
       ],
       "indent": [
-        "error", 4
+        "error",
+        4
       ]
     }
-
   },
   "browserslist": [
     "> 1%",
