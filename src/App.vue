@@ -2,19 +2,24 @@
     <div id="app">
         <header class="header">
             <h1 class="header__title">IP Address Tracker</h1>
-            <app-search-field @search="searchIpAddress"></app-search-field>
+            <app-search-field @search="searchIpAddress" :disabled="disabled"></app-search-field>
             <app-card :ip="ip" :location="location" :timezone="timezone" :isp="isp"></app-card>
         </header>
         <main>
             <app-map :center="{ lat: lat, lng: lng }"></app-map>
+            <transition name="fade">
+                <app-alert v-show="error" @close="resetError">The IP v4 or v6 is invalid! Please check the (RFC791)</app-alert>
+            </transition>
         </main>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
 import AppSearchField from './components/AppSearchField.vue';
 import AppMap from './components/AppMap.vue';
 import AppCard from './components/AppCard.vue';
+import AppAlert from './components/AppAlert.vue';
 
 export default {
     name: 'App',
@@ -22,6 +27,7 @@ export default {
         AppCard,
         AppMap,
         AppSearchField,
+        AppAlert,
     },
     data() {
         return {
@@ -29,9 +35,10 @@ export default {
             location: '',
             timezone: '',
             isp: '',
-            error: '',
+            error: false,
             lat: 0,
             lng: 0,
+            disabled: false,
         };
     },
     mounted() {
@@ -39,18 +46,24 @@ export default {
     },
     methods: {
         searchIpAddress(ip) {
+            this.disabled = true;
             const ipProp = ip || '';
-            fetch(`https://geo.ipify.org/api/v1?apiKey=${process.env.VUE_APP_GEO_IPIFY_KEY}&ipAddress=${ipProp}`)
-                .then((response) => response.json())
-                .then((info) => {
+            axios
+                .get(`https://geo.ipify.org/api/v1?apiKey=${process.env.VUE_APP_GEO_IPIFY_KEY}&ipAddress=${ipProp}`)
+                .then((response) => {
+                    const info = response.data;
                     this.ip = info.ip;
                     this.location = `${info.location.city}, ${this.createAcronym(info.location.region)} ${info.location.postalCode}`;
                     this.timezone = `UTC ${info.location.timezone}`;
                     this.isp = info.isp;
                     this.lat = info.location.lat;
                     this.lng = info.location.lng;
+                    this.disabled = false;
                 })
-                .catch((error) => console.log(error));
+                .catch(() => {
+                    this.disabled = false;
+                    this.error = true;
+                });
         },
         createAcronym(phrase) {
             const words = phrase.split(/\s|-/);
@@ -65,6 +78,9 @@ export default {
                       .splice(0, 2)
                       .join('')
                       .toUpperCase();
+        },
+        resetError() {
+            this.error = false;
         },
     },
 };
@@ -97,5 +113,14 @@ export default {
             font-size: 32px;
         }
     }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
 }
 </style>
