@@ -1,7 +1,7 @@
 <template>
-    <div class="field container">
+    <div class="field">
         <input type="text" class="field__input" v-model="inputTex" placeholder="Search for any IP address or domain" />
-        <button @click="submitInput" class="field__submit">
+        <button @click="submitInput" :disabled="disabled" class="field__submit">
             <img src="@/assets/images/icon-arrow.svg" alt="" />
         </button>
     </div>
@@ -10,6 +10,12 @@
 <script>
 module.exports = {
     name: 'app-search-field',
+    props: {
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
+    },
     data() {
         return {
             inputTex: '',
@@ -27,6 +33,8 @@ module.exports = {
 .field {
     display: flex;
     max-width: 555px;
+    margin: 0 auto;
+    padding: 1rem;
 
     &__input {
         width: 100%;
@@ -52,6 +60,10 @@ module.exports = {
         cursor: pointer;
 
         &:hover {
+            background: var(--hover-button-color);
+        }
+
+        &:disabled {
             background: var(--hover-button-color);
         }
     }

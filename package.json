@@ -36,9 +36,9 @@
       "node": true
     },
     "extends": [
+      "@vue/prettier",
       "plugin:vue/essential",
       "eslint:recommended",
-      "@vue/prettier",
       "airbnb-base"
     ],
     "parserOptions": {
@@ -53,10 +53,10 @@
         }
       ],
       "indent": [
-        "error",
-        4
+        "error", 4
       ]
     }
+
   },
   "browserslist": [
     "> 1%",

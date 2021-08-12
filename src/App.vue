@@ -2,7 +2,7 @@
     <div id="app">
         <header class="header">
             <h1 class="header__title">IP Address Tracker</h1>
-            <app-search-field @search="searchIpAddress"></app-search-field>
+            <app-search-field @search="searchIpAddress" :disabled="disabled"></app-search-field>
             <app-card :ip="ip" :location="location" :timezone="timezone" :isp="isp"></app-card>
         </header>
         <main>
@@ -32,25 +32,35 @@ export default {
             error: '',
             lat: 0,
             lng: 0,
+            disabled: false,
         };
     },
     mounted() {
-        this.searchIpAddress('');
+        this.searchIpAddress('8.8.8.8');
     },
     methods: {
         searchIpAddress(ip) {
+            this.disabled = true;
             const ipProp = ip || '';
-            fetch(`https://geo.ipify.org/api/v1?apiKey=${process.env.VUE_APP_GEO_IPIFY_KEY}&ipAddress=${ipProp}`)
-                .then((response) => response.json())
-                .then((info) => {
-                    this.ip = info.ip;
-                    this.location = `${info.location.city}, ${this.createAcronym(info.location.region)} ${info.location.postalCode}`;
-                    this.timezone = `UTC ${info.location.timezone}`;
-                    this.isp = info.isp;
-                    this.lat = info.location.lat;
-                    this.lng = info.location.lng;
-                })
-                .catch((error) => console.log(error));
+            fetch(`https://geo.ipify.org/api/v1?apiKey=${process.env.VUE_APP_GEO_IPIFY_KEY}&ipAddress=${ipProp}`).then((response) => {
+                if (response.status === 200) {
+                    response.json().then((info) => {
+                        if (info) {
+                            this.ip = info.ip;
+                            this.location = `${info.location.city}, ${this.createAcronym(info.location.region)} ${
+                                info.location.postalCode
+                            }`;
+                            this.timezone = `UTC ${info.location.timezone}`;
+                            this.isp = info.isp;
+                            this.lat = info.location.lat;
+                            this.lng = info.location.lng;
+                            this.disabled = false;
+                        }
+                    });
+                } else {
+                    console.log('Ip v4 or v6 invalid');
+                }
+            });
         },
         createAcronym(phrase) {
             const words = phrase.split(/\s|-/);

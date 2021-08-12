@@ -1,8 +1,0 @@
-@use "../settings/layout";
-@use "sass:math";
-
-.container {
-    max-width: min(100%, calc(layout.$container-width - (layout.$container-padding * 2)));
-    padding: 0 layout.$container-padding;
-    margin: 0 auto;
-}
