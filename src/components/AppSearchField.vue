@@ -58,6 +58,7 @@ module.exports = {
         border-radius: 0 0.83rem 0.83rem 0;
         padding: 0 1.44rem;
         cursor: pointer;
+        transition: background 0.2s linear;
 
         &:hover {
             background: var(--hover-button-color);

@@ -7,7 +7,9 @@
         </header>
         <main>
             <app-map :center="{ lat: lat, lng: lng }"></app-map>
-            <app-alert v-if="error" @close="resetError">The IP v4 or v6 is invalid! Please check the (RFC791)</app-alert>
+            <transition name="fade">
+                <app-alert v-show="error" @close="resetError">The IP v4 or v6 is invalid! Please check the (RFC791)</app-alert>
+            </transition>
         </main>
     </div>
 </template>
@@ -111,5 +113,14 @@ export default {
             font-size: 32px;
         }
     }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
 }
 </style>

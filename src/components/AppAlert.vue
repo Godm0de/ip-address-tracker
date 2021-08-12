@@ -12,6 +12,7 @@ module.exports = {
     name: 'app-alert',
     methods: {
         emitClose() {
+            this.visible = false;
             this.$emit('close');
         },
     },
