@@ -39,7 +39,7 @@ Users should be able to:
 
 ### Links
 
--   Solution URL: [Add solution URL here](https://your-solution-url.com)
+-   Solution URL: [Add solution URL here](https://www.frontendmentor.io/solutions/vue-js-site-using-google-maps-hJmMBDY5F)
 -   Live Site URL: [Add live site URL here](https://ip-address-tracker-bo2j21m97-godm0de.vercel.app)
 
 ## How to use
@@ -84,12 +84,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### What I learned
 
 This was my first challenge in Vue 2, with this challenge a learn the basis about this cool framework! :blush:.
-
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
 
 ### Continued development
 
