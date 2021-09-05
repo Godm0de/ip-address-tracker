@@ -74,8 +74,9 @@ module.exports = {
         justify-content: space-between;
         gap: 32px;
         text-align: start;
-        margin: 48px auto 0 auto;
+        margin: 31px auto 0 auto;
         padding: 36px 32px 37px 32px;
+
 
         &__title {
             font-size: 12px;
