@@ -34,7 +34,6 @@ module.exports = {
     display: flex;
     max-width: 555px;
     margin: 0 auto;
-    padding: 1rem;
 
     &__input {
         width: 100%;
